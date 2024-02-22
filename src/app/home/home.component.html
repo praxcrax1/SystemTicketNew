@@ -1,0 +1,66 @@
+<div class="pad-0 col-xs-12 parent form-group">
+    <div class="pad-2 col-xs-12 col-sm-6 col-md-5">
+        <div class="pad-0 col-xs-12 card">
+            <label class="col-xs-12" style="background-color: #213d77; color:white;">
+                <h4><strong>COUNTER TICKET</strong></h4>
+            </label>
+            <form [formGroup]="formGroup">
+                <div class = "cardContents pad-top-15">
+
+                    <div class="pad-3 col-xs-12 form-group">
+                        <label for="Type" class="pad-0 col-xs-12 col-sm-4 pad-top-5">Transaction Type :</label>
+                        <select name="Type" id="type" class="pad-0 col-xs-12 col-sm-8" formControlName="selectedOperation" (change)="toggleProcedure($event.target.value)">
+                            <option value="Cancellation" style="color:rgb(0, 0, 0);">Cancellation</option>
+                            <option value="Boarding Point Change" style="color:rgb(0, 0, 0)" >Boarding Point Change</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-xs-12 form-group">
+                        <label for="PNR" class="pad-0 col-xs-12 col-sm-4 pad-top-5">PNR :</label>
+                        <input type="text" id="PNR" class="pad-0 col-xs-12 col-sm-8" name="PNR" formControlName="pnr" maxlength="10">
+                        <div>
+                            <small class = "error-message">{{formGroup.controls['pnr'].errors['error']}}</small>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 form-group">
+                        <label for="Train" class="pad-0 col-xs-12 col-sm-4 pad-top-5">Train Number :</label>
+                        <input type="text" id="Train" class="pad-0 col-xs-12 col-sm-8" name="Train" formControlName="trainNo" maxlength="5">
+                        <div>
+                            <small class = "error-message">{{formGroup.controls['trainNo'].errors['error']}}</small>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 form-group">
+                        <div class = "captchaBox col-xs-6 col-sm-4">HiJkL
+                            <button class = "audio" type="submit" (click) = "audioRequest()"><img style="width: 15px;" src ="./assets/images/—Pngtree—white volume icon_4541974.png"></button>
+                            <button class = "redo" type="submit"><img src ="./assets/images/redo-2-512.png" style="width: 15px;"></button>
+                        </div>
+                        <div class = "pad-0 col-xs-6 col-sm-8">
+                            <input type="text" id="Captcha" name="Captcha" placeholder="Enter Captcha" formControlName="captcha">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <input type="checkbox" id="agree"class="pad-0 col-xs-1 pad-top-5" name="agree" value="True/False" formControlName="checked">
+                        <label for="agree" class = "col-xs-11"><span>I have read cancellation/boarding point change procedure and its rule.</span> </label><br>
+                    </div>
+                
+                </div>
+                <div class="buttonblock col-xs-12 form-group">
+                    <button class = "button1" type= 'button' (click) ="submitForm()">Submit</button>
+                    <button class = "button2" type="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="pad-2 col-xs-12 col-sm-6 col-md-7 sample">
+        <div class="pad-0 col-xs-12 pad-top-15 card">
+            <img src="./assets/images/TICKET_INFORMATION2.jpg.png" alt="HTML5 Icon">
+        </div>
+    </div>
+</div>
+<app-procedure *ngIf="selectedProcedure === 'Cancellation'"></app-procedure>
+<app-bprocedure *ngIf="selectedProcedure === 'Boarding Point Change'"></app-bprocedure>
+
+
+
