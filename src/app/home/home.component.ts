@@ -19,10 +19,19 @@ export class HomeComponent implements OnInit{
   formGroup: FormGroup;
   selectedProcedure: string = 'Cancellation';
   base64 : any;
+  captcha : any;
 
   constructor(private router: Router, private store: Store<fromApp.State>,
     private webService: WebService) {}
 
+  ngAfterViewInit(){
+    this.webService.get("api/text/helloWorld").subscribe((resp: any) =>{
+      console.log(resp);
+      this.captcha = resp.captcha;
+      this.base64 = resp.base64Value;
+      
+    });
+  }
   ngOnInit() {
     this.formGroup = new FormGroup({
       selectedOperation: new FormControl('Cancellation', Validators.required),
@@ -54,6 +63,9 @@ export class HomeComponent implements OnInit{
       else if (form.captcha == ''){
         alert('Please fill in the captcha');
       }
+      else if (form.captcha != this.captcha){
+        alert('Please Enter Valid Captcha')
+      }
       else if (form.checked == false){
         alert('Please read cancellation/boarding point change procedure and its rule and check the box');
       }
@@ -65,12 +77,9 @@ export class HomeComponent implements OnInit{
        }
   }
   audioRequest(){
-    this.webService.get("api/text/helloWorld").subscribe((resp: any) =>{
-      console.log(resp);
-      this.base64 = resp.value;
       this.playBase64Audio();
-    });
-  }
+    };
+  
   playBase64Audio() {
     const audio = new Audio();
     audio.src = 'data:audio/mp3;base64,' + this.base64; // Adjust the type if needed
@@ -79,5 +88,14 @@ export class HomeComponent implements OnInit{
   }
   toggleProcedure(value: string) {
     this.selectedProcedure = value;
+  }
+  
+  resetCaptcha(){
+    this.webService.get("api/text/helloWorld").subscribe((resp: any) =>{
+      console.log(resp);
+      this.captcha = resp.captcha;
+      this.base64 = resp.base64Value;
+      
+    });
   }
 }

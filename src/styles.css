@@ -281,8 +281,8 @@ label{
 }
 .error-message{
     color: red;
-    
 }
+
 .parabox{
     text-align: justify;
     padding-left: 20px;
@@ -483,9 +483,12 @@ th {
 .captchaBox{
     background-color: #082b71;
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
     border-radius: 2px;
-    transform: translate(-10px) scale(0.9);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 500;
+    transform: translate(-10px) scale(0.99);
+    padding: 5px;
 }
 .audio{
     background: none;

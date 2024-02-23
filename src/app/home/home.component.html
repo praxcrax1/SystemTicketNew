@@ -32,9 +32,9 @@
                     </div>
 
                     <div class="col-xs-12 form-group">
-                        <div class = "captchaBox col-xs-6 col-sm-4">HiJkL
-                            <button class = "audio" type="submit" (click) = "audioRequest()"><img style="width: 15px;" src ="./assets/images/—Pngtree—white volume icon_4541974.png"></button>
-                            <button class = "redo" type="submit"><img src ="./assets/images/redo-2-512.png" style="width: 15px;"></button>
+                        <div class = "captchaBox col-xs-6 col-sm-4">{{this.captcha}}
+                            <button class = "audio" type="button" (click) = "audioRequest()"><img style="width: 18px;" src ="./assets/images/—Pngtree—white volume icon_4541974.png"></button>
+                            <button class = "redo" type="button" (click) = "resetCaptcha()"><img src ="./assets/images/refresh-icon-white-0.jpg" style="width: 15px;"></button>
                         </div>
                         <div class = "pad-0 col-xs-6 col-sm-8">
                             <input type="text" id="Captcha" name="Captcha" placeholder="Enter Captcha" formControlName="captcha">
