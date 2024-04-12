@@ -14,14 +14,14 @@ export class FormValidator {
         return {"error": resp};
     }
     
-    static validateTrainNo(trainNo: FormControl){
-        let resp = null;
-        let train = (trainNo.value ? trainNo. value: '') + "";
-        console.log("INPUT TRAIN IS ", train);
-        if(train.length > 0 && (train.length < 5  || train.length > 5)){
-            resp = "Train Number should be a 5 digit number "
-        }
-        return {"error": resp};
-    }
+        // static validateTrainNo(trainNo: FormControl){
+        //     let resp = null;
+        //     let train = (trainNo.value ? trainNo.value: '') + "";
+        //     console.log("INPUT TRAIN IS ", train);
+        //     if(train.length > 0 && (train.length < 5  || train.length > 5)){
+        //         resp = "Train Number should be a 5 digit number "
+        //     }
+        //     return {"error": resp};
+        // }
 }
 

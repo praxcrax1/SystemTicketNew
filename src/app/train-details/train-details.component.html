@@ -1,15 +1,30 @@
-<div class = "col-xs-12" style="color: rgb(0, 0, 0); margin-top: 10px;" align = "center"><h4><strong>TRAVEL DETAILS: </strong></h4></div>
-        <div class="pad-2 col-xs-12">
-            <div class="pad-0 col-xs-12 card mar-top-20" style="margin-bottom: 25px;">
-                <label class="col-xs-12" style="background-color: #213d77; color:white;">
-                    <div class = "col-xs-6" align = "left"><h4 id="trainDetailsDest"><strong>PRAYAGRAJ EXP(12418)</strong></h4></div>
-                    <div class = "col-xs-6" align = "right"><h4 id="trainDetailsPNR" ><strong>PNR: 2752032177</strong></h4></div>
-                </label>
-                <div class = "col-xs-12 pad-top-15 cardContents pad-bottom-30">
-                    <div class = "col-xs-6 trainDetails"><span class="pull-left">16:50 | NEW DELHI<br><span class="text-center" style="display: block;">Tue, 7th Jan</span></span></div>
-                    <div class = "col-xs-6 trainDetails"><span class="pull-right">3:55 | PRAYAGRAJ<br><span class="text-center" style="display: block;">Wed, 8th Jan</span></span></div>
-                    <div class = "col-xs-12 trainDetails" align = "center" style="bottom: 22px;">-----11:05-----</div> 
-                    <div class = "col-xs-12 trainDetails pad-top-15"align="center">3 Adult(s) | Sleeper(SL) | General(GN) | Boarding at New Delhi | Boarding Date: 7th Jan 2024 16:50</div>
-                </div>
-            </div>     
+<ngx-spinner type="ball-spin-clockwise"></ngx-spinner>
+<div class="col-xs-12" style="color: rgb(0, 0, 0); margin-top: 10px;" align="center">
+    <h4><strong>TRAVEL DETAILS: </strong></h4>
+</div>
+<div class="pad-2 col-xs-12">
+    <div class="pad-0 col-xs-12 card mar-top-20" style="margin-bottom: 25px;">
+        <label class="pad-0 col-xs-12" style="background-color: #213d77; color:white;">
+            <div class="col-xs-6" align="left">
+                <h4 id="trainDetailsDest">
+                    <strong>{{this.display.pnrEnquiryResponseDTO.trainName}}({{this.display.pnrEnquiryResponseDTO.trainNumber}})</strong>
+                </h4>
+            </div>
+            <div class="col-xs-6" align="right">
+                <h4 id="trainDetailsPNR"><strong>PNR: {{this.display.pnrEnquiryResponseDTO.pnrNumber}}</strong></h4>
+            </div>
+        </label>
+        <div class="col-xs-12 pad-top-15 cardContents pad-bottom-30">
+            <div class="journeyDetails">
+                <div class="trainDetails" id="boarding"><span>{{display.pnrEnquiryResponseDTO.departureTime |
+                        minutesToHour }} | {{ this.display.pnrEnquiryResponseDTO.boardingPoint |
+                        stationName}}<br></span></div>
+                <div class="trainDetails" id="date">{{this.display.pnrEnquiryResponseDTO.dateOfJourney | date:'EEEE, d MMMM yyyy'}}</div>
+                <div class="trainDetails" id="arrival"><span> {{this.display.pnrEnquiryResponseDTO.destinationStation | stationName}} | {{this.display.pnrEnquiryResponseDTO.arrivalTimeDestination | minutesToHour}}  <br></span></div>
+            </div>
+            <div class="col-xs-12 trainDetails pad-top-15" align="center">
+                <strong>{{this.display.pnrEnquiryResponseDTO.numberOfpassenger}}</strong> Passenger(s) | Class <strong>{{this.display.pnrEnquiryResponseDTO.journeyClass}}</strong> | Quota <strong>{{this.display.pnrEnquiryResponseDTO.quota}}</strong> | Boarding at <strong>{{this.display.pnrEnquiryResponseDTO.boardingPoint | stationName }}</strong> | Boarding Date: <strong>{{this.display.pnrEnquiryResponseDTO.dateOfJourney | date:'EEEE, d MMMM yyyy'}}</strong> at <strong>{{display.pnrEnquiryResponseDTO.departureTime | minutesToHour }}</strong>
+            </div>
         </div>
+    </div>
+</div>

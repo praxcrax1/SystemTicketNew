@@ -1,38 +1,44 @@
+<ngx-spinner type="ball-spin-clockwise"></ngx-spinner>
 <div class="pad-0 col-xs-12 parent form-group">
-    <div class = "pad-0 col-xs-12 col-md-10 col-md-push-1 card">
+    <div class="pad-0 col-xs-12 col-md-10 col-md-push-1 card">
         <label class="col-xs-12" style="background-color: #213d77; color:white;">
-            <div class = "col-xs-12" align = "center"><h4><strong>TICKET CANCELLATION</strong></h4></div>
+            <div class="col-xs-12" align="center">
+                <h4><strong>TICKET CANCELLATION</strong></h4>
+            </div>
         </label>
         <app-train-details></app-train-details>
         <div class="pad-2 col-xs-12 mar-top-20 mar-bottom-30">
-    
             <div class="pad-3 col-xs-12 form-group" *ngIf="!isConfirmed">
-                <div style="color: rgb(0, 0, 0); margin-top: 10px; padding-bottom: 20px;" align = "center"><h4><strong>BOARDING POINT LIST :</strong></h4></div>
-                <select class="pad-0 col-xs-12 col-sm-8 col-md-4 col-md-push-4 col-sm-push-2">
-                    <option>Agra</option>
-                    <option>Lucknow</option>
+                <div style="color: rgb(0, 0, 0); margin-top: 10px; padding-bottom: 20px;" align="center">
+                    <h4><strong>BOARDING POINT LIST :</strong></h4>
+                </div>
+                <select class="selection pad-0 col-xs-12 col-sm-8 col-md-4 col-md-push-4 col-sm-push-2"
+                    (change)="updateSelectedStation($event.target.value)" #stationSelect>
+                    <option *ngFor="let station of filteredStations">
+                        {{ station.stnNameCode }}
+                    </option>
                 </select>
             </div>
-                <p-toast></p-toast>
-                <p-confirmDialog></p-confirmDialog>
-                <div class="buttonblock1 col-xs-12 col-md-8 col-md-push-2 form-group" *ngIf="!isConfirmed">
-                    <button class = "button1" type="submit" (click)="confirmCancellation()" style="background-color: rgb(200, 55, 55); margin-right: 15px;">Confirm</button>
-                    <button class = "button2" type="back">Back</button>
-                </div> 
-        
-    <div *ngIf="isConfirmed"> 
-        <p style="color: green; margin-bottom: 20px;">Boarding point has been successfully changed.</p> 
-        <div class="col-xs-12 form-group">
-            <span class="pad-0 col-xs-12 col-sm-6 pad-top-5 col-sm-push-2" style="color: #00000091">NEW BOARDING POINT :</span>
-            <p class="pad-0 col-xs-12 col-sm-6 pad-top-5 col-sm-pull-2" style = "color:black"><strong>AGRA JN</strong></p>
-
+            <p-toast></p-toast>
+            <p-confirmDialog></p-confirmDialog>
+            <div class="buttonblock1 col-xs-12 col-md-8 col-md-push-2 form-group" *ngIf="!isConfirmed">
+                <button class="button1" type="submit" (click)="confirmCancellation()"
+                    style="background-color: rgb(200, 55, 55); margin-right: 15px;">Confirm</button>
+                <button class="button2" type="back" (click)="goBack()">Back</button>
+            </div>
+            <div class="confirmation" *ngIf="isConfirmed">
+                <p [style.color]="this.bChangeResponse.success ? 'green' : 'red'" style="margin-bottom: 20px;">
+                    {{ this.bChangeResponse.success ? 'Boarding point has been successfully changed.' : this.bChangeResponse.error }}
+                </p>
+                <div class="col-xs-12 bchangeConfirm" *ngIf="this.bChangeResponse.success != false">
+                    <span class="pad-0 col-xs-12 col-sm-6 pad-top-5" style=" color: #00000091; max-width: 200px;">NEW BOARDING POINT :</span>
+                    <p class="pad-0 col-xs-12 col-sm-6 pad-top-5" style="color:black; max-width: 200px;">
+                        <strong>{{this.selectedStation}}</strong>   
+                    </p>
+                </div>
+                <button *ngIf="this.bChangeResponse.success != false" class="button1" (click) ="printPage()">Print Ticket</button>
+            </div>
         </div>
-        <button class="button1">Print Ticket</button>
-      </div>
-    </div> 
     </div>
 </div>
 <app-bprocedure></app-bprocedure>
-
-
-
